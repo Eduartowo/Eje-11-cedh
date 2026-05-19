@@ -1,0 +1,50 @@
+<div>
+    <h1>Mantenimiento Mascotas</h1>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Mascota</h5>
+
+        <!--<form>-->
+            <input type="hidden" id="idMascota" [(ngModel)] = mascota.id>
+            <div class="mb-3">
+                <label for="Nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="Nombre" aria-describedby="Nombrehelp" [(ngModel)] = mascota.nombre>
+                <div id="Nombrehelp" class="form-text">Ingrese el nombre de la mascota.</div>
+            </div>
+            <div class="mb-3">
+                <label for="Edad" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="Edad" aria-describedby="Edadhelp" [(ngModel)] = mascota.edad>
+                <div id="Edadhelp" class="form-text">Ingrese la edad de la mascota.</div>
+            </div>
+            <button type="button" class="btn btn-success" (click)="GuardarMascota()"> {{editando ? 'Editar' : 'Guardar'}}</button>
+        <!--</form>-->
+
+        <h2 class="mt-4">Lista de Mascotas</h2><br>
+        <!-- Aquí se mostraría la tabla con las mascotas registradas -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (mascota of mascotas; track mascota.id ){
+                <tr>
+                    <th scope="row">{{mascota.id}}</th>
+                    <td>{{mascota.nombre}}</td>
+                    <td>{{mascota.edad}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" style = 'margin-right: 10px;' (click)="actualizarMascota(mascota)">Editar</button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarMascota(mascota.id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
